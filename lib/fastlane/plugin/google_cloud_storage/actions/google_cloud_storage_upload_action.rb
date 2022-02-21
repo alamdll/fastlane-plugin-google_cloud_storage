@@ -16,6 +16,7 @@ module Fastlane
           bucket_name: params[:bucket]
         )
 
+        # TODO: Create bucket directory if doesn't exist
         destination_path = params[:destination]
 
         file_name = params[:name] || File.basename(params[:content_path])
@@ -70,6 +71,11 @@ module Fastlane
                                   env_name: "GOOGLE_CLOUD_STORAGE_UPLOAD_NAME",
                                description: "File name",
                                   optional: true,
+                                      type: String),
+          FastlaneCore::ConfigItem.new(key: :destination,
+                                  env_name: "GOOGLE_CLOUD_STORAGE_UPLOAD_DESTINATION",
+                               description: "Bucket destination path",
+                                  optional: false,
                                       type: String)
         ]
       end
