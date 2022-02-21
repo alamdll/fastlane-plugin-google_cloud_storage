@@ -16,8 +16,10 @@ module Fastlane
           bucket_name: params[:bucket]
         )
 
+        destination_path = params[:destination]
+
         file_name = params[:name] || File.basename(params[:content_path])
-        bucket.create_file(params[:content_path], file_name)
+        bucket.create_file params[:content_path], destination_path
       end
 
       def self.description
